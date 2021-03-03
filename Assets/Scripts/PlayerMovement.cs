@@ -79,10 +79,6 @@ public class PlayerMovement : MonoBehaviour
 
         //controller.Move(move * speed * Time.deltaTime);
 
-        switch(Input.GetKey(key:)){
-
-        }
-
         if(Input.GetKey(KeyCode.W)){
 
             Debug.Log(Input.GetAxis("Horizontal"));
