@@ -39,6 +39,25 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
+    void FixedUpdate(){
+
+        //MOVEMENT//
+
+        float x = Input.GetAxis("Horizontal");
+        float z = Input.GetAxis("Vertical");
+
+        Vector3 move = transform.right * x + transform.forward * z;
+
+        if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D)){
+
+            //transform.localPosition += move * speed * Time.deltaTime;
+
+            rb.AddForce(move * speed, ForceMode.Force);
+
+        }
+
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -49,6 +68,12 @@ public class PlayerMovement : MonoBehaviour
         if(isGrounded && velocity.y < 0 && !isClimbing)
         {
             velocity.y = 0f;    
+        }
+
+        if(!isGrounded && !isClimbing){
+
+            velocity.y += 1f;
+
         }
 
         //FRONTCHECK//
@@ -67,35 +92,6 @@ public class PlayerMovement : MonoBehaviour
 
         }else{
             isClimbing = false;
-        }
-
-
-        //MOVEMENT//
-
-        float x = Input.GetAxis("Horizontal");
-        float z = Input.GetAxis("Vertical");
-
-        Vector3 move = transform.right * x + transform.forward * z;
-
-        //controller.Move(move * speed * Time.deltaTime);
-
-        switch(Input.GetKey(key:)){
-
-        }
-
-        if(Input.GetKey(KeyCode.W)){
-
-            Debug.Log(Input.GetAxis("Horizontal"));
-
-            transform.localPosition += move * speed * Input.GetAxis("Horizontal") * Time.deltaTime;
-
-        }
-        if (Input.GetAxis("Vertical") != 0){
-
-            Debug.Log(Input.GetAxis("Vertical"));
-
-            transform.localPosition += move * speed * Input.GetAxis("Vertical") * Time.deltaTime;
-
         }
 
         //RUN//
@@ -118,11 +114,11 @@ public class PlayerMovement : MonoBehaviour
 
             if(collision.gameObject.name == "Plane"){
 
-                rb.transform.position = portalPos[1].position;
+                transform.localPosition = portalPos[1].position;
                 
             }else{
 
-                rb.transform.position = portalPos[0].position;
+                transform.localPosition = portalPos[0].position;
 
             }
 

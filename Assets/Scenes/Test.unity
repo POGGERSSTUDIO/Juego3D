@@ -211,6 +211,7 @@ GameObject:
   - component: {fileID: 136918494}
   - component: {fileID: 136918495}
   - component: {fileID: 136918493}
+  - component: {fileID: 136918496}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -261,7 +262,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91973bbbc66c4a1499ec3870eeebd5a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 136918491}
+  player: {fileID: 0}
   speed: 5
   climbSpeed: 5
   groundCheck: {fileID: 726380778}
@@ -295,7 +296,25 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
-  m_CollisionDetection: 2
+  m_CollisionDetection: 3
+--- !u!143 &136918496
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 136918491}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Height: 2
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &157127076
 GameObject:
   m_ObjectHideFlags: 0
@@ -1069,7 +1088,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 929207737}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.996, z: 0.725}
+  m_LocalPosition: {x: 0, y: -0.996, z: 1.09}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 136918492}
@@ -2190,7 +2209,7 @@ TerrainCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1596015891}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 43b81b7b5019b1b42baebcc9d7289f4b, type: 2}
   m_Enabled: 1
   m_TerrainData: {fileID: 15600000, guid: cce13cb43f6500049a12bceedb3180d1, type: 2}
   m_EnableTreeColliders: 1
