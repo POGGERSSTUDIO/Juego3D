@@ -6,10 +6,10 @@ public class PlayerMovement : MonoBehaviour
 {
 
     private CharacterController controller;
-    public GameObject player;
-    public float speed = 5f;
+    public float walkingSpeed;
+    public float runningSpeed;
+    private float currentSpeed;
     public float climbSpeed;
-    private Vector3 crouchScale, normalScale;
 
     Vector3 velocity;
 
@@ -21,8 +21,6 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask climbMask;
     bool isGrounded, isClimbing;
     bool frontCheck;
-    public float jumpHeight = 3f;
-    public bool canJump, canCrouch;
     private Rigidbody rb;
 
     public Transform[] portalPos;
@@ -33,7 +31,8 @@ public class PlayerMovement : MonoBehaviour
     }
 
     void Start(){
-
+        
+        currentSpeed = walkingSpeed;
         rb = GetComponent<Rigidbody>();
         controller = GetComponent<CharacterController>();
 
@@ -50,15 +49,15 @@ public class PlayerMovement : MonoBehaviour
 
         if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D)){
 
-            //transform.localPosition += move * speed * Time.deltaTime;
+            rb.velocity = move * currentSpeed * Time.deltaTime;
 
-            rb.AddForce(move * speed, ForceMode.Force);
-
+        }else{
+            rb.velocity = Vector3.zero;
         }
 
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
 
@@ -88,7 +87,7 @@ public class PlayerMovement : MonoBehaviour
 
             Debug.Log("Climb");
 
-            transform.localPosition += new Vector3(0f, climbSpeed * Time.deltaTime, 0f);
+            rb.velocity = Vector3.up * climbSpeed * Time.deltaTime;
 
         }else{
             isClimbing = false;
@@ -98,12 +97,12 @@ public class PlayerMovement : MonoBehaviour
 
         if(Input.GetKey(KeyCode.LeftShift) && isGrounded)
         {
-            speed = 12f;
+            currentSpeed = runningSpeed;
         }
 
         if(Input.GetKeyUp(KeyCode.LeftShift))
         {
-            speed = 5f;
+            currentSpeed = walkingSpeed;
         }
 
     }
