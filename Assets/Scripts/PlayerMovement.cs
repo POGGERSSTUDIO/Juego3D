@@ -6,10 +6,10 @@ public class PlayerMovement : MonoBehaviour
 {
 
     private CharacterController controller;
-    public float walkingSpeed;
-    public float runningSpeed;
-    private float currentSpeed;
+    public GameObject player;
+    public float speed = 5f;
     public float climbSpeed;
+    private Vector3 crouchScale, normalScale;
 
     Vector3 velocity;
 
@@ -21,6 +21,8 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask climbMask;
     bool isGrounded, isClimbing;
     bool frontCheck;
+    public float jumpHeight = 3f;
+    public bool canJump, canCrouch;
     private Rigidbody rb;
 
     public Transform[] portalPos;
@@ -31,33 +33,13 @@ public class PlayerMovement : MonoBehaviour
     }
 
     void Start(){
-        
-        currentSpeed = walkingSpeed;
+
         rb = GetComponent<Rigidbody>();
         controller = GetComponent<CharacterController>();
 
     }
 
-    void FixedUpdate(){
-
-        //MOVEMENT//
-
-        float x = Input.GetAxis("Horizontal");
-        float z = Input.GetAxis("Vertical");
-
-        Vector3 move = transform.right * x + transform.forward * z;
-
-        if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D)){
-
-            rb.velocity = move * currentSpeed * Time.deltaTime;
-
-        }else{
-            rb.velocity = Vector3.zero;
-        }
-
-    }
-
-    
+    // Update is called once per frame
     void Update()
     {
 
@@ -67,12 +49,6 @@ public class PlayerMovement : MonoBehaviour
         if(isGrounded && velocity.y < 0 && !isClimbing)
         {
             velocity.y = 0f;    
-        }
-
-        if(!isGrounded && !isClimbing){
-
-            velocity.y += 1f;
-
         }
 
         //FRONTCHECK//
@@ -87,22 +63,51 @@ public class PlayerMovement : MonoBehaviour
 
             Debug.Log("Climb");
 
-            rb.velocity = Vector3.up * climbSpeed * Time.deltaTime;
+            transform.localPosition += new Vector3(0f, climbSpeed * Time.deltaTime, 0f);
 
         }else{
             isClimbing = false;
+        }
+
+
+        //MOVEMENT//
+
+        float x = Input.GetAxis("Horizontal");
+        float z = Input.GetAxis("Vertical");
+
+        Vector3 move = transform.right * x + transform.forward * z;
+
+        //controller.Move(move * speed * Time.deltaTime);
+
+        switch(Input.GetKey(key:)){
+
+        }
+
+        if(Input.GetKey(KeyCode.W)){
+
+            Debug.Log(Input.GetAxis("Horizontal"));
+
+            transform.localPosition += move * speed * Input.GetAxis("Horizontal") * Time.deltaTime;
+
+        }
+        if (Input.GetAxis("Vertical") != 0){
+
+            Debug.Log(Input.GetAxis("Vertical"));
+
+            transform.localPosition += move * speed * Input.GetAxis("Vertical") * Time.deltaTime;
+
         }
 
         //RUN//
 
         if(Input.GetKey(KeyCode.LeftShift) && isGrounded)
         {
-            currentSpeed = runningSpeed;
+            speed = 12f;
         }
 
         if(Input.GetKeyUp(KeyCode.LeftShift))
         {
-            currentSpeed = walkingSpeed;
+            speed = 5f;
         }
 
     }
@@ -111,14 +116,13 @@ public class PlayerMovement : MonoBehaviour
 
         if(collision.gameObject.layer == 11){
 
-
             if(collision.gameObject.name == "Plane"){
 
-                transform.localPosition = portalPos[1].position;
+                rb.transform.position = portalPos[1].position;
                 
             }else{
 
-                transform.localPosition = portalPos[0].position;
+                rb.transform.position = portalPos[0].position;
 
             }
 
@@ -130,7 +134,7 @@ public class PlayerMovement : MonoBehaviour
 
             PointManager pm = GameObject.Find(collision.gameObject.name).GetComponent<PointManager>();
 
-            //gm.increaseScore(pm.getScore());
+            gm.increaseScore(pm.getScore());
 
             Destroy(collision.gameObject);
 

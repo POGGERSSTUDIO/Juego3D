@@ -4,8 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - Climb
   - Point
-  - Portal
   layers:
   - Default
   - TransparentFX
@@ -15,9 +15,9 @@ TagManager:
   - UI
   - 
   - 
-  - Climbable
+  - PostProcessing
   - Ground
-  - 
+  - Climb
   - Portal
   - 
   - 
