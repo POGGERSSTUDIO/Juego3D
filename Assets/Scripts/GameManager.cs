@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.Video;
 
 public class GameManager : MonoBehaviour
 {
@@ -15,7 +16,8 @@ public class GameManager : MonoBehaviour
     private int h2cd;
     public Text h3;
     private int h3cd;
-    
+    public VideoPlayer vp;
+
     void Start()
     {
         score.text = "0";
@@ -25,9 +27,11 @@ public class GameManager : MonoBehaviour
         h2.text = h2cd.ToString();
         h3cd = 0;
         h3.text = h3cd.ToString();
+        
     }
 
-    
+   
+
     void Update()
     {
         if(Time.time > h1cd){
@@ -66,6 +70,26 @@ public class GameManager : MonoBehaviour
             h3.text = (h3cd - (int) Time.time).ToString();
 
         }
+
+        if (SceneManager.GetActiveScene().buildIndex == 0)
+        {
+            if (Input.anyKeyDown)
+            {
+                Debug.Log("BOBO");
+                SceneManager.LoadScene(1);
+            }
+        }
+
+        if (SceneManager.GetActiveScene().buildIndex == 1)
+        {
+            if(Time.timeSinceLevelLoad >= vp.length)
+            {
+                SceneManager.LoadScene(0);
+             
+            }
+
+
+        }
     }
 
     public void increaseScore(int objScore){
@@ -75,4 +99,7 @@ public class GameManager : MonoBehaviour
         score.text = gameScore.ToString();
 
     }
+
+   
+   
 }
