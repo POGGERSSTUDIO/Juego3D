@@ -111,6 +111,7 @@ public class PlayerMovement : MonoBehaviour
 
         if(collision.gameObject.layer == 11){
 
+
             if(collision.gameObject.name == "Plane"){
 
                 transform.localPosition = portalPos[1].position;
@@ -129,7 +130,7 @@ public class PlayerMovement : MonoBehaviour
 
             PointManager pm = GameObject.Find(collision.gameObject.name).GetComponent<PointManager>();
 
-            gm.increaseScore(pm.getScore());
+            //gm.increaseScore(pm.getScore());
 
             Destroy(collision.gameObject);
 
