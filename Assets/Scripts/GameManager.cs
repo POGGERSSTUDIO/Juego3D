@@ -84,7 +84,7 @@ public class GameManager : MonoBehaviour
         {
             if(Time.timeSinceLevelLoad >= vp.length)
             {
-                SceneManager.LoadScene(0);
+                SceneManager.LoadScene(2);
              
             }
 
