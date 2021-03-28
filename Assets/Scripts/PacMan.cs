@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class PacMan : Character
 {
@@ -14,13 +15,13 @@ public class PacMan : Character
     public bool isGrounded;
     public bool frontCheck;
 
-
+  
+    
     public override void Update()
     {
         base.Update();
         isGrounded = GroundCheck();
         Gravity();
-
 
     }
 
