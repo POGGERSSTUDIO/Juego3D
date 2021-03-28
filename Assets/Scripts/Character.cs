@@ -1,19 +1,24 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
-public abstract class Character : MonoBehaviour
+public abstract class Character : MonoBehaviourPunCallbacks
 {
     public float walkingSpeed;
     public float runningSpeed;
     private float currentSpeed;
     public Vector3 velocity;
     public Rigidbody rb;
+    public PhotonView PV;
+    PlayerManager playerManager;
     
 
     void Awake()
     {
-
+        
+        PV = GetComponent<PhotonView>();
+        //playerManager = PhotonView.Find((int)PV.InstantiationData[0]).GetComponent<PlayerManager>();
     }
 
     void Start(){
@@ -29,7 +34,9 @@ public abstract class Character : MonoBehaviour
     
     public virtual void Update()
     {
-        Run();       
+        Run();
+        if (!PV.IsMine)
+            return;
     }
 
     public virtual void Move(){

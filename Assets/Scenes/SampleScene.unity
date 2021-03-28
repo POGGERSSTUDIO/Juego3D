@@ -7898,6 +7898,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -55489632190521748, guid: 84230b833cfbebd41bb3124d9c67ab63,
+        type: 3}
+      propertyPath: sceneViewId
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4988835128732496760, guid: 84230b833cfbebd41bb3124d9c67ab63,
         type: 3}
       propertyPath: m_Name
@@ -8003,11 +8008,6 @@ PrefabInstance:
       propertyPath: field of view
       value: 70
       objectReference: {fileID: 0}
-    - target: {fileID: 6111484996023238133, guid: 84230b833cfbebd41bb3124d9c67ab63,
-        type: 3}
-      propertyPath: sceneViewId
-      value: 5
-      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4988835128732496766, guid: 84230b833cfbebd41bb3124d9c67ab63, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 84230b833cfbebd41bb3124d9c67ab63, type: 3}
@@ -8039,6 +8039,7 @@ MonoBehaviour:
   runningSpeed: 1000
   velocity: {x: 0, y: 0, z: 0}
   rb: {fileID: 444911652}
+  PV: {fileID: 0}
 --- !u!114 &444911654
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24579,6 +24580,7 @@ MonoBehaviour:
   runningSpeed: 1000
   velocity: {x: 0, y: 0, z: 0}
   rb: {fileID: 1477393963}
+  PV: {fileID: 0}
   groundCheck: {fileID: 1448703809}
   frontCheckPos: {fileID: 1148423001}
   groundDistance: 0.4
@@ -24594,28 +24596,6 @@ MonoBehaviour:
   - {fileID: 2064327964}
   isGrounded: 0
   frontCheck: 0
---- !u!114 &1477393962
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1477393960}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObservedComponentsFoldoutOpen: 1
-  Group: 0
-  prefixField: -1
-  Synchronization: 3
-  OwnershipTransfer: 0
-  observableSearch: 2
-  ObservedComponents: []
-  sceneViewId: 3
-  InstantiationId: 0
-  isRuntimeInstantiated: 0
 --- !u!54 &1477393963 stripped
 Rigidbody:
   m_CorrespondingSourceObject: {fileID: 4988835128732496767, guid: 84230b833cfbebd41bb3124d9c67ab63,
@@ -26201,7 +26181,7 @@ MonoBehaviour:
   OwnershipTransfer: 0
   observableSearch: 2
   ObservedComponents: []
-  sceneViewId: 1
+  sceneViewId: 999
   InstantiationId: 0
   isRuntimeInstantiated: 0
 --- !u!114 &1539314271
@@ -26744,6 +26724,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -55489632190521748, guid: 84230b833cfbebd41bb3124d9c67ab63,
+        type: 3}
+      propertyPath: sceneViewId
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4988835128732496760, guid: 84230b833cfbebd41bb3124d9c67ab63,
         type: 3}
       propertyPath: m_Name
@@ -26752,7 +26737,7 @@ PrefabInstance:
     - target: {fileID: 4988835128732496760, guid: 84230b833cfbebd41bb3124d9c67ab63,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4988835128732496761, guid: 84230b833cfbebd41bb3124d9c67ab63,
         type: 3}
@@ -26848,11 +26833,6 @@ PrefabInstance:
         type: 3}
       propertyPath: field of view
       value: 70
-      objectReference: {fileID: 0}
-    - target: {fileID: 6111484996023238133, guid: 84230b833cfbebd41bb3124d9c67ab63,
-        type: 3}
-      propertyPath: sceneViewId
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4988835128732496766, guid: 84230b833cfbebd41bb3124d9c67ab63, type: 3}
