@@ -31,15 +31,18 @@ public abstract class Character : MonoBehaviourPunCallbacks
     }
 
     void FixedUpdate(){
+        if (!PV.IsMine)
+            return;
         Move();
     }
 
     
     public virtual void Update()
     {
-        Run();
         if (!PV.IsMine)
-           return;
+            return;
+        Run();
+        
     }
 
     public virtual void Move(){
