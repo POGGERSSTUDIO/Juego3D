@@ -16,7 +16,6 @@ public abstract class Character : MonoBehaviourPunCallbacks
 
     void Awake()
     {
-        
         PV = GetComponent<PhotonView>();
         //playerManager = PhotonView.Find((int)PV.InstantiationData[0]).GetComponent<PlayerManager>();
     }
@@ -24,19 +23,26 @@ public abstract class Character : MonoBehaviourPunCallbacks
     void Start(){
         currentSpeed = walkingSpeed;
         rb = GetComponent<Rigidbody>();
-
+        
+        if (!PV.IsMine)
+        {
+            Destroy(GetComponentInChildren<Camera>().gameObject);
+        }
     }
 
     void FixedUpdate(){
+        if (!PV.IsMine)
+            return;
         Move();
     }
 
     
     public virtual void Update()
     {
-        Run();
         if (!PV.IsMine)
             return;
+        Run();
+        
     }
 
     public virtual void Move(){

@@ -3,69 +3,32 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Photon.Pun;
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoBehaviourPunCallbacks
 {
 
     public Text score;
     private int gameScore;
-    public Text h1;
-    private int h1cd;
-    public Text h2;
-    private int h2cd;
-    public Text h3;
-    private int h3cd;
+
+    PhotonView myPV;
+
+    int whichPLayerIsPacman;
     
     void Start()
     {
-        score.text = "0";
-        h1cd = 0;
-        h1.text = h1cd.ToString();
-        h2cd = 0;
-        h2.text = h2cd.ToString();
-        h3cd = 0;
-        h3.text = h3cd.ToString();
+    
+        myPV = GetComponent<PhotonView>();
+        Debug.Log(PhotonNetwork.IsMasterClient);
+        if(PhotonNetwork.IsMasterClient){
+            PickPacman();
+        }
     }
 
     
     void Update()
     {
-        if(Time.time > h1cd){
-            if(Input.GetKeyDown(KeyCode.Alpha1)){
-                increaseScore(-20);
-                h1cd += (int) Time.time + 5;
-            }
-        }else{
-            
-            h1.text = ((h1cd - (int) Time.time) * Time.deltaTime).ToString();
-            
-        }
-
-        if(Time.time > h2cd){
-            if(Input.GetKeyDown(KeyCode.Alpha2)){
-
-                increaseScore(-40);
-                h2cd += (int) Time.time + 10;
-
-            }
-        }else{
-
-            h2.text = (h2cd - (int) Time.time).ToString();
-            
-        }
-
-        if(Time.time > h3cd){
-            if(Input.GetKeyDown(KeyCode.Alpha3)){
-
-                increaseScore(-10);
-                h3cd += (int) Time.time + 3;
-
-            }
-        }else{
-
-            h3.text = (h3cd - (int) Time.time).ToString();
-
-        }
+        
     }
 
     public void increaseScore(int objScore){
@@ -74,5 +37,18 @@ public class GameManager : MonoBehaviour
 
         score.text = gameScore.ToString();
 
+    }
+
+    void PickPacman(){
+
+        whichPLayerIsPacman = Random.Range(0, PhotonNetwork.CurrentRoom.PlayerCount);
+        myPV.RPC("RPC_SyncPacman", RpcTarget.All, whichPLayerIsPacman);
+        Debug.Log("Pacman is: " + whichPLayerIsPacman);
+
+    }
+
+    void RPC_SyncPacman(int playerNumber){
+        whichPLayerIsPacman = playerNumber;
+        PlayerManager.localPlayer.BecomePacman(whichPLayerIsPacman);
     }
 }

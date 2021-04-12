@@ -66,3 +66,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94dfb976317201c498b799216356940e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPacman: 0
