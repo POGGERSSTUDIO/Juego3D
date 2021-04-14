@@ -4,7 +4,7 @@ using UnityEngine;
 using Photon.Pun;
 using System.IO;
 
-public class PlayerManager : MonoBehaviour
+public class PlayerManager : MonoBehaviourPunCallbacks
 {
     public static PlayerManager localPlayer;
     PhotonView PV;
@@ -19,42 +19,16 @@ public class PlayerManager : MonoBehaviour
     {
         if(PV.IsMine)
         {
+            localPlayer = this;
             CreateController();
         }
     }
 
-    
-    void Update()
-    {
-        
-    }
-
     void CreateController()
     {
+       
         PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PacmanController"), Vector3.zero, Quaternion.identity);
-    }
-
-    public void BecomePacman(int PacmanNumber){
-
-        if(PhotonNetwork.LocalPlayer == PhotonNetwork.PlayerList[PacmanNumber]){
-
-            isPacman = true;
-
-        }else{
-            isPacman = false;
-        }
 
     }
 
-    public void OnPhotonSerializableView(PhotonStream stream, PhotonMessageInfo info){
-
-        if(stream.IsWriting){
-            stream.SendNext(direction);
-            stream.SendNext(isPacman);
-        }else{
-            this.direction = (float)stream.ReceiveNext();
-            this.isPacman = (bool)stream.ReceiveNext();
-        }
-
-    }
 }

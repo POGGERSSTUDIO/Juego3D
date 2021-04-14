@@ -71,7 +71,7 @@ MonoBehaviour:
   runningSpeed: 600
   velocity: {x: 0, y: 0, z: 0}
   rb: {fileID: 4988835128732496767}
-  PV: {fileID: 0}
+  PV: {fileID: -55489632190521748}
   groundCheck: {fileID: 4988835129349358466}
   frontCheckPos: {fileID: 4988835130167126243}
   groundDistance: 0.4
@@ -336,7 +336,7 @@ Camera:
     height: 1
   near clip plane: 0.01
   far clip plane: 258.3
-  field of view: 45
+  field of view: 80
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
