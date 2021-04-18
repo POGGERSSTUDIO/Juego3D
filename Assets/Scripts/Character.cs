@@ -8,25 +8,25 @@ public abstract class Character : MonoBehaviourPunCallbacks
     public float walkingSpeed;
     public float runningSpeed;
     private float currentSpeed;
-    public Vector3 velocity;
     public Rigidbody rb;
     public PhotonView PV;
     PlayerManager playerManager;
+    [SerializeField] private Camera cam;
     
 
     void Awake()
     {
-        PV = GetComponent<PhotonView>();
         //playerManager = PhotonView.Find((int)PV.InstantiationData[0]).GetComponent<PlayerManager>();
     }
 
-    void Start(){
+    public virtual void Start(){
         currentSpeed = walkingSpeed;
         rb = GetComponent<Rigidbody>();
+        PV = GetComponent<PhotonView>();
         
         if (!PV.IsMine)
         {
-            Destroy(GetComponentInChildren<Camera>().gameObject);
+            cam.enabled = false;
         }
     }
 
@@ -57,7 +57,7 @@ public abstract class Character : MonoBehaviourPunCallbacks
             rb.velocity = move * currentSpeed * Time.deltaTime;
 
         }else{
-            rb.velocity = Vector3.zero;
+            rb.velocity = Vector3.down;
         }
     }
     public virtual void Run(){

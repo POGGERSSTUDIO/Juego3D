@@ -122,9 +122,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkingSpeed: 500
   runningSpeed: 600
+<<<<<<< Updated upstream
   velocity: {x: 0, y: 0, z: 0}
   rb: {fileID: 4988835128732496767}
   PV: {fileID: -55489632190521748}
+=======
+  rb: {fileID: 4988835128732496767}
+  PV: {fileID: -55489632190521748}
+  cam: {fileID: 4988835130326708482}
+>>>>>>> Stashed changes
 --- !u!1 &4988835129349358477
 GameObject:
   m_ObjectHideFlags: 0

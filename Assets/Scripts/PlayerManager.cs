@@ -27,7 +27,12 @@ public class PlayerManager : MonoBehaviourPunCallbacks
     void CreateController()
     {
        
+<<<<<<< Updated upstream
         PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PacmanController"), Vector3.zero, Quaternion.identity);
+=======
+        if(PhotonNetwork.IsMasterClient) PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PacmanController"), Vector3.zero, Quaternion.identity);
+        else PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "GhostController"), Vector3.zero, Quaternion.identity);
+>>>>>>> Stashed changes
 
     }
 

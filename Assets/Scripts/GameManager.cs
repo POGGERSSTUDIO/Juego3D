@@ -9,7 +9,12 @@ public class GameManager : MonoBehaviour
 
     public Text score;
     private int gameScore;
+<<<<<<< Updated upstream
     
+=======
+
+
+>>>>>>> Stashed changes
     void Start()
     {
 

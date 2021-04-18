@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4988835128732496761}
   - component: {fileID: 4988835128732496767}
-  - component: {fileID: 4988835128732496766}
   - component: {fileID: 4988835128732496764}
   - component: {fileID: -55489632190521748}
   - component: {fileID: -5430697735949721739}
+  - component: {fileID: -6885495654868496492}
   m_Layer: 0
   m_Name: PacmanController
   m_TagString: Untagged
@@ -55,6 +55,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+<<<<<<< Updated upstream
 --- !u!114 &4988835128732496766
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -85,6 +86,8 @@ MonoBehaviour:
   portalPos: []
   isGrounded: 0
   frontCheck: 0
+=======
+>>>>>>> Stashed changes
 --- !u!136 &4988835128732496764
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -138,6 +141,26 @@ MonoBehaviour:
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
   m_UseLocal: 1
+--- !u!114 &-6885495654868496492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4988835128732496760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33272d0877c155b45b541abf8ce5f7e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walkingSpeed: 500
+  runningSpeed: 600
+  rb: {fileID: 4988835128732496767}
+  PV: {fileID: -55489632190521748}
+  cam: {fileID: 4988835130326708482}
+  portalPos:
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &4988835129349358477
 GameObject:
   m_ObjectHideFlags: 0

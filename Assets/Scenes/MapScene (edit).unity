@@ -2064,7 +2064,7 @@ Transform:
   - {fileID: 860542328}
   - {fileID: 1489360075}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &86604255 stripped
 Transform:
@@ -4564,7 +4564,7 @@ GameObject:
   m_Component:
   - component: {fileID: 193710246}
   m_Layer: 11
-  m_Name: TP
+  m_Name: TP1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8444,6 +8444,7 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1220567592}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< Updated upstream
 --- !u!1001 &444911650
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8598,6 +8599,8 @@ MonoBehaviour:
   velocity: {x: 0, y: 0, z: 0}
   rb: {fileID: 444911652}
   PV: {fileID: 0}
+=======
+>>>>>>> Stashed changes
 --- !u!1 &448559054
 GameObject:
   m_ObjectHideFlags: 0
@@ -10489,7 +10492,7 @@ Transform:
   - {fileID: 621842536}
   - {fileID: 1516939480}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &495503033 stripped
 Transform:
@@ -13156,7 +13159,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &656633940 stripped
 Transform:
@@ -16992,7 +16995,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &859184900
 MonoBehaviour:
@@ -21798,12 +21801,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a98dd688d59acf40a9a203ff52fe7c9, type: 3}
---- !u!4 &1148423001 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4988835130167126243, guid: 84230b833cfbebd41bb3124d9c67ab63,
-    type: 3}
-  m_PrefabInstance: {fileID: 1582291199}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1152641688
 GameObject:
   m_ObjectHideFlags: 0
@@ -26059,7 +26056,11 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+<<<<<<< Updated upstream
   m_RootOrder: 7
+=======
+  m_RootOrder: 5
+>>>>>>> Stashed changes
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1404966588 stripped
 Transform:
@@ -26378,12 +26379,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7604355909012216198, guid: 5a98dd688d59acf40a9a203ff52fe7c9,
     type: 3}
   m_PrefabInstance: {fileID: 390136999}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1448703809 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4988835129349358466, guid: 84230b833cfbebd41bb3124d9c67ab63,
-    type: 3}
-  m_PrefabInstance: {fileID: 1582291199}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1452521067
 GameObject:
@@ -27264,6 +27259,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a98dd688d59acf40a9a203ff52fe7c9, type: 3}
+<<<<<<< Updated upstream
 --- !u!1 &1477393960 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4988835128732496760, guid: 84230b833cfbebd41bb3124d9c67ab63,
@@ -27308,6 +27304,8 @@ Rigidbody:
     type: 3}
   m_PrefabInstance: {fileID: 1582291199}
   m_PrefabAsset: {fileID: 0}
+=======
+>>>>>>> Stashed changes
 --- !u!1001 &1482481672
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29725,6 +29723,7 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1549813584}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< Updated upstream
 --- !u!1001 &1582291199
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29855,6 +29854,8 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 4988835128732496766, guid: 84230b833cfbebd41bb3124d9c67ab63, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 84230b833cfbebd41bb3124d9c67ab63, type: 3}
+=======
+>>>>>>> Stashed changes
 --- !u!1 &1584277698
 GameObject:
   m_ObjectHideFlags: 0
@@ -38175,7 +38176,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2064327964}
   m_Layer: 11
-  m_Name: TP
+  m_Name: TP2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -39890,7 +39891,11 @@ MonoBehaviour:
   OwnershipTransfer: 0
   observableSearch: 2
   ObservedComponents: []
+<<<<<<< Updated upstream
   sceneViewId: 999
+=======
+  sceneViewId: 1
+>>>>>>> Stashed changes
   InstantiationId: 0
   isRuntimeInstantiated: 0
 --- !u!114 &1285910008818274905
@@ -39935,5 +39940,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+<<<<<<< Updated upstream
   m_RootOrder: 8
+=======
+  m_RootOrder: 6
+>>>>>>> Stashed changes
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

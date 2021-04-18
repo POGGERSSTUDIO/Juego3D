@@ -5,9 +5,14 @@ using UnityEngine;
 public class Ghost : Character
 {
 
-    void Start()
+    public override void Start()
     {
         
+        base.Start();
+
+        walkingSpeed = 500f;
+        runningSpeed = 600f;
+
     }
 
     public override void Update()

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Climb
   - Point
+  - Ghost
   layers:
   - Default
   - TransparentFX
