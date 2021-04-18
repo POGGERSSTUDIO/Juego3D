@@ -1,28 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Photon.Pun;
 
 public class PacMan : Character
 {
-    public Transform groundCheck;
-    public Transform frontCheckPos;
-    public float groundDistance;
-    public float frontDistance;
-    public LayerMask groundMask;
-    public LayerMask climbMask;
     public Transform[] portalPos;
-    public bool isGrounded;
-    public bool frontCheck;
 
-  
+    public override void Start(){
+        base.Start();
+
+        walkingSpeed = 500f;
+        runningSpeed = 600f;
+        portalPos[0] = GameObject.Find("TP1").transform;
+        portalPos[1] = GameObject.Find("TP2").transform;
+    }  
     
     public override void Update()
     {
         base.Update();
-        isGrounded = GroundCheck();
-        Gravity();
-
     }
 
     void OnTriggerEnter(Collider collision){
@@ -55,23 +50,5 @@ public class PacMan : Character
         }
 
     }
-
-    public virtual bool GroundCheck(){
-        return Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
-    }
-
-    public virtual void Gravity(){
-
-       if(isGrounded && velocity.y < 0)
-        {
-            velocity.y = 0f;    
-        }
-
-        if(!isGrounded){
-
-            velocity.y += 1f;
-        }
-    }
-
     
 }

@@ -4,8 +4,9 @@ using UnityEngine;
 using Photon.Pun;
 using System.IO;
 
-public class PlayerManager : MonoBehaviour
+public class PlayerManager : MonoBehaviourPunCallbacks
 {
+    public static PlayerManager localPlayer;
     PhotonView PV;
 
     private void Awake()
@@ -16,18 +17,17 @@ public class PlayerManager : MonoBehaviour
     {
         if(PV.IsMine)
         {
+            localPlayer = this;
             CreateController();
         }
     }
 
-    
-    void Update()
-    {
-        
-    }
-
     void CreateController()
     {
-        PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PacmanController"), Vector3.zero, Quaternion.identity);
+       
+        if(PhotonNetwork.IsMasterClient) PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PacmanController"), Vector3.zero, Quaternion.identity);
+        else PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "GhostController"), Vector3.zero, Quaternion.identity);
+
     }
+
 }

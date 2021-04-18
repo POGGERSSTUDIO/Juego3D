@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4988835128732496761}
   - component: {fileID: 4988835128732496767}
-  - component: {fileID: -1160415055636609392}
   - component: {fileID: 4988835128732496764}
-  - component: {fileID: 6111484996023238133}
+  - component: {fileID: -55489632190521748}
+  - component: {fileID: -5430697735949721739}
+  - component: {fileID: 3143678293157730427}
   m_Layer: 0
   m_Name: GhostController
   m_TagString: Untagged
@@ -54,22 +55,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &-1160415055636609392
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4988835128732496760}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6823d319de2bea54da5b67ceda999350, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  walkingSpeed: 400
-  runningSpeed: 500
-  velocity: {x: 0, y: 0, z: 0}
-  rb: {fileID: 4988835128732496767}
 --- !u!136 &4988835128732496764
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -84,7 +69,7 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6111484996023238133
+--- !u!114 &-55489632190521748
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -101,11 +86,45 @@ MonoBehaviour:
   prefixField: -1
   Synchronization: 3
   OwnershipTransfer: 0
-  observableSearch: 2
-  ObservedComponents: []
+  observableSearch: 0
+  ObservedComponents:
+  - {fileID: -5430697735949721739}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!114 &-5430697735949721739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4988835128732496760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
+--- !u!114 &3143678293157730427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4988835128732496760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6823d319de2bea54da5b67ceda999350, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walkingSpeed: 500
+  runningSpeed: 600
+  rb: {fileID: 4988835128732496767}
+  PV: {fileID: -55489632190521748}
+  cam: {fileID: 4988835130326708482}
 --- !u!1 &4988835129349358477
 GameObject:
   m_ObjectHideFlags: 0
@@ -224,7 +243,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 2962eee4e7fe16f41b45a1e1363e1adc, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -304,7 +323,7 @@ Camera:
     height: 1
   near clip plane: 0.01
   far clip plane: 258.3
-  field of view: 45
+  field of view: 80
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
