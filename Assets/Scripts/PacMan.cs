@@ -5,10 +5,12 @@ using UnityEngine;
 public class PacMan : Character
 {
     public Transform[] portalPos;
+    public Minimap minimap;
 
     public override void Start(){
         base.Start();
-
+        minimap = GameObject.Find("MinimapCamera").GetComponent<Minimap>();
+        minimap.SetTarget(gameObject.transform);
         walkingSpeed = 500f;
         runningSpeed = 600f;
         portalPos[0] = GameObject.Find("TP1").transform;
@@ -43,12 +45,19 @@ public class PacMan : Character
 
             PointManager pm = GameObject.Find(collision.gameObject.name).GetComponent<PointManager>();
 
-            //gm.increaseScore(pm.getScore());
+            gm.increaseScore(pm.getScore());
 
             Destroy(collision.gameObject);
 
         }
 
     }
-    
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Ghost")
+        {
+            transform.position = new Vector3(0f, 0f, -20f);
+        }
+    }
 }

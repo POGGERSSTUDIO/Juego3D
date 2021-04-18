@@ -23,11 +23,7 @@ public class GameManager : MonoBehaviour
     }
 
     public void increaseScore(int objScore){
-
         gameScore += objScore;
-
-        score.text = gameScore.ToString();
-
+        score.text = "Score: " + gameScore.ToString();
     }
-
 }
