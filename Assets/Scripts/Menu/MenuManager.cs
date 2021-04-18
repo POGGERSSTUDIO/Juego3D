@@ -44,7 +44,4 @@ public class MenuManager : MonoBehaviour
     {
         menu.Close();
     }
-
-  
-
 }
