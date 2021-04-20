@@ -57,6 +57,12 @@ public class PacMan : Character
     {
         if (collision.gameObject.tag == "Ghost")
         {
+            GameObject[] ghost = GameObject.FindGameObjectsWithTag("Ghost");
+            foreach(GameObject g in ghost){
+
+                g.transform.position = new Vector3(0f, 0f, 0f);
+
+            }
             transform.position = new Vector3(0f, 0f, -20f);
         }
     }

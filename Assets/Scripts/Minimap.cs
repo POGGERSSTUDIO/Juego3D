@@ -8,7 +8,12 @@ public class Minimap : MonoBehaviourPunCallbacks
 
     public Transform PacMan;
     public GameObject minimapa;
-    public Camera minimapCamera;
+
+    void Start(){
+
+        minimapa = GameObject.Find("UIPacman");
+
+    }
 
     private void LateUpdate()
     {

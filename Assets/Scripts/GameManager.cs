@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.Video;
+using Photon.Pun;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,11 +12,11 @@ public class GameManager : MonoBehaviour
     public Text score;
     private int gameScore;
     public VideoPlayer vp;
-
-
+    PhotonView PV;
+    
     void Start()
     {
-
+        
     }
 
     
@@ -33,6 +34,29 @@ public class GameManager : MonoBehaviour
             if (Time.timeSinceLevelLoad >= vp.length)
             {
                 SceneManager.LoadScene(2);
+
+            }
+        }
+
+        if(Time.timeSinceLevelLoad <= 2f){
+        
+            if(SceneManager.GetActiveScene().buildIndex == 2){
+
+                score = GameObject.Find("Score").GetComponent<Text>();
+                
+                PV = GameObject.Find("Canvas").GetComponent<PhotonView>();
+                if(!PV.IsMine){
+
+                    GameObject.Find("UIPacman").SetActive(false);
+                    GameObject.Find("UIGhost").SetActive(true);
+
+                }else{
+
+                    GameObject.Find("UIPacman").SetActive(true);
+                    GameObject.Find("UIGhost").SetActive(false);
+                    
+                }
+                
 
             }
         }
