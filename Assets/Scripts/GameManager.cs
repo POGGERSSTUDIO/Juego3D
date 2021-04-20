@@ -42,6 +42,10 @@ public class GameManager : MonoBehaviour
         
             if(SceneManager.GetActiveScene().buildIndex == 2){
 
+                GameObject.Find("GhostVRController").SetActive(true);
+                
+
+
                 score = GameObject.Find("Score").GetComponent<Text>();
                 
                 PV = GameObject.Find("Canvas").GetComponent<PhotonView>();
