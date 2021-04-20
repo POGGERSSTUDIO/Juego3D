@@ -24,8 +24,8 @@ public class PlayerManager : MonoBehaviourPunCallbacks
 
     void CreateController()
     {
-        if(PhotonNetwork.IsMasterClient) PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PacmanController"), new Vector3(0f, 0f, -20f), Quaternion.identity);
-        else PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "GhostController"), new Vector3(0f, 0f, -3f), Quaternion.identity);
+        if(PhotonNetwork.IsMasterClient) PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PacmanVRController"), new Vector3(0f, 0f, -20f), Quaternion.identity);
+        else PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "GhostVRController"), new Vector3(0f, 0f, -3f), Quaternion.identity);
     }
 
 }
