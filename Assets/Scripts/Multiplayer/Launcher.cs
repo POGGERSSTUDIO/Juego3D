@@ -11,7 +11,7 @@ public class Launcher : MonoBehaviourPunCallbacks
     public static Launcher Instance;
     
     
-    [SerializeField] TMP_InputField roomNameInputField;
+
     [SerializeField] TMP_Text errorText;
     [SerializeField] TMP_Text roomNameText;
     [SerializeField] Transform roomListContent;
@@ -51,11 +51,8 @@ public class Launcher : MonoBehaviourPunCallbacks
         //EnterRoomParams enterRoomParams = new EnterRoomParams();
         //enterRoomParams.RoomOptions.MaxPlayers = maxPlayers;
 
-        if(string.IsNullOrEmpty(roomNameInputField.text))
-        {
-            return;
-        }
-        PhotonNetwork.CreateRoom(roomNameInputField.text);
+      
+        PhotonNetwork.CreateRoom(""+ Random.Range(1, 10));
         MenuManager.Instance.OpenMenu("loading");
 
     }
@@ -97,6 +94,10 @@ public class Launcher : MonoBehaviourPunCallbacks
         PhotonNetwork.LoadLevel(2);
     }
 
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
     
     
     public void LeaveRoom()

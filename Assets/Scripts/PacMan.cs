@@ -9,8 +9,7 @@ public class PacMan : Character
 
     public override void Start(){
         base.Start();
-        minimap = GameObject.Find("MinimapCamera").GetComponent<Minimap>();
-        minimap.SetTarget(gameObject.transform);
+        minimap = GameObject.Find("Camera").GetComponent<Minimap>();
         walkingSpeed = 500f;
         runningSpeed = 600f;
         portalPos[0] = GameObject.Find("TP1").transform;
@@ -19,7 +18,9 @@ public class PacMan : Character
     
     public override void Update()
     {
+
         base.Update();
+        minimap.SetTarget(gameObject.transform);
     }
 
     void OnTriggerEnter(Collider collision){
