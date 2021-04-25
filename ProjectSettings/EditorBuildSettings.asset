@@ -17,10 +17,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/UiVideo.unity
     guid: 4f86e07d6e4697c46a3cbef213ff906d
-  - enabled: 1
-    path: Assets/Scenes/EndScenes/Defeat.unity
-    guid: f7e0011ebad2c3d4a842e1f0c6f6fba6
-  - enabled: 1
-    path: Assets/Scenes/EndScenes/Victory.unity
-    guid: e82f1615c4b460e4b9385b6e1aa988c1
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   m_configObjects: {}
