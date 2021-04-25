@@ -50,7 +50,9 @@ public class GameManager : MonoBehaviourPunCallbacks
                 
                 PV = GameObject.Find("Canvas").GetComponent<PhotonView>();
 
-                if(!PV.IsMine){
+                GameObject.FindObjectOfType<OVRCameraRig>().gameObject.SetActive(false);
+
+                if (!PV.IsMine){
 
                     GameObject.Find("UIPacman").SetActive(false);
 

@@ -26,7 +26,10 @@ public abstract class Character : MonoBehaviourPunCallbacks
         
         if (!PV.IsMine)
         {
-            cam.enabled = false;
+            if (cam != null)
+            {
+                cam.enabled = false;
+            }
         }
     }
 
