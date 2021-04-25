@@ -8,6 +8,7 @@ TagManager:
   - Point
   - Ghost
   - Portal
+  - BigPoint
   layers:
   - Default
   - TransparentFX

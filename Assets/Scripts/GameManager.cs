@@ -6,17 +6,22 @@ using UnityEngine.UI;
 using UnityEngine.Video;
 using Photon.Pun;
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoBehaviourPunCallbacks
 {
 
     public Text score;
     private int gameScore;
     public VideoPlayer vp;
     PhotonView PV;
+    float endTime;
+    bool gameEnded;
+    bool victory;
+    GameObject endPanel;
     
     void Start()
     {
-        
+        gameEnded = false;
+        endTime = 2f;
     }
 
     
@@ -25,7 +30,7 @@ public class GameManager : MonoBehaviour
         if(SceneManager.GetActiveScene().buildIndex == 0){
             if(Input.anyKey)
             {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                SceneManager.LoadScene(1);
             }
         }
 
@@ -42,32 +47,74 @@ public class GameManager : MonoBehaviour
         
             if(SceneManager.GetActiveScene().buildIndex == 2){
 
-                GameObject.Find("GhostVRController").SetActive(true);
+                GameObject.Find("GhostVRController(Clone)").SetActive(true);
                 
-
-
                 score = GameObject.Find("Score").GetComponent<Text>();
                 
                 PV = GameObject.Find("Canvas").GetComponent<PhotonView>();
                 if(!PV.IsMine){
 
                     GameObject.Find("UIPacman").SetActive(false);
-                    GameObject.Find("UIGhost").SetActive(true);
 
                 }else{
 
                     GameObject.Find("UIPacman").SetActive(true);
-                    GameObject.Find("UIGhost").SetActive(false);
                     
                 }
                 
 
             }
         }
+
+        if(SceneManager.GetActiveScene().buildIndex == 2){
+
+            if(gameEnded){
+                EndGame(victory);
+            }
+
+        }
     }
 
     public void increaseScore(int objScore){
         gameScore += objScore;
         score.text = "Score: " + gameScore.ToString();
+    }
+
+    public void EndGame(bool vPacman){
+        
+        if(endPanel != null){
+            endPanel.SetActive(true);
+        }
+
+        if(GameObject.Find("EndText") != null){
+            Text endText = GameObject.Find("EndText").GetComponent<Text>();
+
+            if(vPacman){
+                endText.text = "GAME ENDED: PACMAN WINS!";
+            }else{
+                endText.text = "GAME ENDED: GHOSTS WINS!";
+            }
+        }
+
+        endTime -= Time.deltaTime;
+
+        if(endTime <= 0f){
+            PhotonNetwork.LeaveRoom();
+            Destroy(RoomManager.Instance.gameObject);
+            SceneManager.LoadScene(1);
+        }
+
+    }
+
+    public void disableUI(GameObject endScreen){
+        
+        endPanel = endScreen;
+        endPanel.SetActive(false);
+
+    }
+
+    public void setVictory(bool v){
+        gameEnded = true;
+        victory = v;
     }
 }

@@ -288,11 +288,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkingSpeed: 500
   runningSpeed: 600
-  rb: {fileID: 0}
-  PV: {fileID: 0}
+  rb: {fileID: 5206162289615448353}
+  PV: {fileID: 7774081179863500747}
   cam: {fileID: 0}
   portalPos: []
   minimap: {fileID: 0}
+  defMat: {fileID: 2100000, guid: b623384a2bad3d547b9743da9df00ef2, type: 2}
 --- !u!114 &7774081179863500747
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -893,7 +894,7 @@ GameObject:
   - component: {fileID: 5428784026794787256}
   - component: {fileID: 4346395443110479736}
   m_Layer: 13
-  m_Name: Sphere
+  m_Name: PacmanBody
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

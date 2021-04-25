@@ -1,26 +1,70 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class PacMan : Character
 {
     public Transform[] portalPos;
     public Minimap minimap;
+    float lifes;
+    float score;
+    float balls;
+    GameManager gm;
+    GameObject[] ghost;
+    bool canKill;
+    public Material defMat;
+    float killTimer;
 
     public override void Start(){
         base.Start();
+        canKill = false;
+        lifes = 3f;
         minimap = GameObject.Find("Camera").GetComponent<Minimap>();
+        gm = GameObject.Find("GameManager").GetComponent<GameManager>();
+        minimap.SetTarget(gameObject.transform);
         walkingSpeed = 500f;
         runningSpeed = 600f;
-        portalPos[0] = GameObject.Find("TP1").transform;
-        portalPos[1] = GameObject.Find("TP2").transform;
+        score = 0;
+        killTimer = 10f;
     }  
     
     public override void Update()
     {
 
         base.Update();
-        minimap.SetTarget(gameObject.transform);
+        if(Time.timeSinceLevelLoad <= 2f){
+
+            balls = GameObject.FindGameObjectsWithTag("Point").Length;
+            portalPos[0] = GameObject.Find("TP1").transform;
+            portalPos[1] = GameObject.Find("TP2").transform;
+            ghost = GameObject.FindGameObjectsWithTag("Ghost");
+            
+            if(GameObject.Find("Panel") != null){
+                gm.disableUI(GameObject.Find("Panel"));
+            }
+
+        }
+
+        if(score == balls){
+            gm.setVictory(true);
+        }else if (lifes <= 0f){
+            gm.setVictory(false);
+        }
+
+
+        if(canKill){
+        
+            GameObject.Find("PacmanBody").GetComponent<MeshRenderer>().material.color = Random.ColorHSV();
+            killTimer -= Time.deltaTime;
+            if(killTimer <= 0f){
+                canKill = false;
+            }
+
+        }else{       
+            GameObject.Find("PacmanBody").GetComponent<MeshRenderer>().material = defMat;
+            killTimer = 10f;            
+        }
     }
 
     void OnTriggerEnter(Collider collision){
@@ -46,9 +90,27 @@ public class PacMan : Character
 
             PointManager pm = GameObject.Find(collision.gameObject.name).GetComponent<PointManager>();
 
-            gm.increaseScore(pm.getScore());
+            int scoreBalls = pm.getScore();
 
             Destroy(collision.gameObject);
+
+            gm.increaseScore(scoreBalls);
+
+            score++;
+
+        }
+
+        if(collision.gameObject.tag == "BigPoint"){
+
+            PointManager pm = GameObject.Find(collision.gameObject.name).GetComponent<PointManager>();
+
+            int scoreBalls = pm.getScore();
+
+            Destroy(collision.gameObject);
+
+            gm.increaseScore(scoreBalls);
+
+            canKill = true;
 
         }
 
@@ -58,13 +120,31 @@ public class PacMan : Character
     {
         if (collision.gameObject.tag == "Ghost")
         {
-            GameObject[] ghost = GameObject.FindGameObjectsWithTag("Ghost");
-            foreach(GameObject g in ghost){
+            if(canKill){
+                
+                collision.gameObject.transform.position = new Vector3(0f, 0f, 0f);
 
-                g.transform.position = new Vector3(0f, 0f, 0f);
+            }else{
+
+                photonView.RPC("PacmanDied", RpcTarget.All);
 
             }
-            transform.position = new Vector3(0f, 0f, -20f);
+
         }
+    }
+
+    [PunRPC]
+    void PacmanDied(){
+
+        lifes--;
+
+        foreach(GameObject g in ghost){
+
+            g.transform.position = new Vector3(0f, 0f, 0f);
+
+        }
+
+        transform.position = new Vector3(0f, 0f, -20f);
+
     }
 }
