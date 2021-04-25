@@ -5,7 +5,7 @@ using Photon.Pun;
 
 public class PacMan : Character
 {
-    public Transform[] portalPos;
+    public GameObject[] portalPos;
     public Minimap minimap;
     float lifes;
     float score;
@@ -35,9 +35,9 @@ public class PacMan : Character
         base.Update();
         if(Time.timeSinceLevelLoad <= 2f){
 
+            portalPos = GameObject.FindGameObjectsWithTag("Portal");
+
             balls = GameObject.FindGameObjectsWithTag("Point").Length;
-            portalPos[0] = GameObject.Find("TP1").transform;
-            portalPos[1] = GameObject.Find("TP2").transform;
             ghost = GameObject.FindGameObjectsWithTag("Ghost");
             
             if(GameObject.Find("Panel") != null){
@@ -45,8 +45,10 @@ public class PacMan : Character
             }
 
         }
+        
 
-        if(score == balls){
+
+        if (score == balls){
             gm.setVictory(true);
         }else if (lifes <= 0f){
             gm.setVictory(false);
@@ -73,13 +75,14 @@ public class PacMan : Character
 
 
             if(collision.gameObject.name == "Plane"){
-
-                transform.localPosition = portalPos[1].position;
-                
-            }else{
-
-                transform.localPosition = portalPos[0].position;
-
+                GetComponent<CharacterController>().enabled = false;
+                transform.localPosition = portalPos[0].transform.position;
+                GetComponent<CharacterController>().enabled = true;
+            }
+            else{
+                GetComponent<CharacterController>().enabled = false;
+                transform.localPosition = portalPos[1].transform.position;
+                GetComponent<CharacterController>().enabled = true;
             }
 
         }

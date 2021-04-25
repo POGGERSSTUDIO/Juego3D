@@ -46,8 +46,8 @@ public class GameManager : MonoBehaviourPunCallbacks
         if(Time.timeSinceLevelLoad <= 2f){
         
             if(SceneManager.GetActiveScene().buildIndex == 2){
-
-                GameObject.Find("GhostVRController(Clone)").SetActive(true);
+                
+           
                 
                 score = GameObject.Find("Score").GetComponent<Text>();
                 
