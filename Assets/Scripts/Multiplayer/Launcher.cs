@@ -23,6 +23,8 @@ public class Launcher : MonoBehaviourPunCallbacks
 
     void Awake()
     {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         Instance = this;
     }
 
@@ -94,7 +96,7 @@ public class Launcher : MonoBehaviourPunCallbacks
 
     public void StartGame() 
     {
-        PhotonNetwork.LoadLevel(1);
+        PhotonNetwork.LoadLevel(2);
     }
 
     
