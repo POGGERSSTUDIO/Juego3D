@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7604355909012216200}
   - component: {fileID: 7604355909012216201}
   - component: {fileID: 7604355909012216197}
+  - component: {fileID: 7356006292264557864}
   m_Layer: 0
   m_Name: PointBall
   m_TagString: Point
@@ -107,3 +108,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score: 10
+--- !u!111 &7356006292264557864
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7604355909012216202}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 9800042c38567c54aa8f1dd145ebaa8f, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 9800042c38567c54aa8f1dd145ebaa8f, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
