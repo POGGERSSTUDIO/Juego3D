@@ -46,9 +46,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         if(Time.timeSinceLevelLoad <= 2f){
         
             if(SceneManager.GetActiveScene().buildIndex == 2){
-                
-           
-                
+            
                 score = GameObject.Find("Score").GetComponent<Text>();
                 
                 PV = GameObject.Find("Canvas").GetComponent<PhotonView>();
@@ -70,6 +68,14 @@ public class GameManager : MonoBehaviourPunCallbacks
 
             if(gameEnded){
                 EndGame(victory);
+            }
+
+            if(Time.timeSinceLevelLoad > 10f && GameObject.FindObjectOfType<PacMan>() == null){
+
+                PhotonNetwork.LeaveRoom();
+                Destroy(RoomManager.Instance.gameObject);
+                SceneManager.LoadScene(1);
+
             }
 
         }

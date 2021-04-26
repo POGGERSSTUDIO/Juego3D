@@ -24,6 +24,9 @@ public class Minimap : MonoBehaviourPunCallbacks
     public void SetTarget(Transform target)
     {
         PacMan = target.transform;
-        minimapa.SetActive(true);
+        if(minimapa != null){
+            minimapa.SetActive(true);
+        }
+        
     }
 }

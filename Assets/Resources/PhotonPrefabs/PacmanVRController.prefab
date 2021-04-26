@@ -48,7 +48,7 @@ GameObject:
   - component: {fileID: 1476942335843571619}
   - component: {fileID: 6043672943786499782}
   - component: {fileID: 5206162289615448353}
-  - component: {fileID: 7864104024804777306}
+  - component: {fileID: 383386368431696613}
   m_Layer: 13
   m_Name: PacmanVRController
   m_TagString: Player
@@ -240,7 +240,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!136 &7864104024804777306
+--- !u!136 &383386368431696613
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -250,10 +250,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 1
-  m_Height: 1
+  m_Radius: 1.07
+  m_Height: 3.68
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: -0.65, z: 0}
 --- !u!114 &3367296171396977701
 MonoBehaviour:
   m_ObjectHideFlags: 0

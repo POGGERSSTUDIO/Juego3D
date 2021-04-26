@@ -117,10 +117,25 @@ public class PacMan : Character
 
         }
 
+        if (collision.gameObject.tag == "Ghost")
+        {
+            if(canKill){
+                
+                collision.gameObject.transform.position = new Vector3(0f, 0f, 0f);
+
+            }else{
+
+                photonView.RPC("PacmanDied", RpcTarget.All);
+
+            }
+
+        }
+
     }
 
     private void OnCollisionEnter(Collision collision)
     {
+
         if (collision.gameObject.tag == "Ghost")
         {
             if(canKill){
@@ -139,6 +154,8 @@ public class PacMan : Character
     [PunRPC]
     void PacmanDied(){
 
+        GetComponent<CharacterController>().enabled = false;
+
         lifes--;
 
         foreach(GameObject g in ghost){
@@ -148,6 +165,8 @@ public class PacMan : Character
         }
 
         transform.position = new Vector3(0f, 0f, -20f);
+
+        GetComponent<CharacterController>().enabled = true;
 
     }
 }
