@@ -315,6 +315,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mouseSensitivity: 200
   playerBody: {fileID: 4988835128732496761}
+--- !u!111 &2630349885245389224
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6889621806158306234}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 4781951162920444690, guid: 71ec0674619f3a245af0af0607489c9d,
+    type: 3}
+  m_Animations: []
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1001 &1134295093546204510
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -397,8 +413,15 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.7
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7969234130118537662, guid: c276a66fd58e6e746aa8e925117ad8e4, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: c276a66fd58e6e746aa8e925117ad8e4, type: 3}
+--- !u!1 &6889621806158306234 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5773907085302687460, guid: c276a66fd58e6e746aa8e925117ad8e4,
+    type: 3}
+  m_PrefabInstance: {fileID: 1134295093546204510}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6113366199824384256 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6587316323462921310, guid: c276a66fd58e6e746aa8e925117ad8e4,

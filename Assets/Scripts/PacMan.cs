@@ -7,6 +7,7 @@ public class PacMan : Character
 {
     public GameObject[] portalPos;
     public Minimap minimap;
+    float changeTime;
     float lifes;
     float score;
     float balls;
@@ -15,11 +16,14 @@ public class PacMan : Character
     bool canKill;
     public Material defMat;
     float killTimer;
+    public AudioSource[] audioPacman;
+    public GameObject[] pacmanLifes;
 
     public override void Start(){
         base.Start();
+        changeTime = 0f;
         canKill = false;
-        lifes = 3f;
+        lifes = 5f;
         minimap = GameObject.Find("Camera").GetComponent<Minimap>();
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
         minimap.SetTarget(gameObject.transform);
@@ -31,6 +35,15 @@ public class PacMan : Character
     
     public override void Update()
     {
+        if (Time.timeSinceLevelLoad <= 5f)
+        {
+            GetComponent<CharacterController>().enabled = false;
+
+        }
+        else if (Time.timeSinceLevelLoad >= 5f && Time.timeSinceLevelLoad <= 6f) 
+        {
+            GetComponent<CharacterController>().enabled = true;
+        }
 
         base.Update();
         if(Time.timeSinceLevelLoad <= 2f){
@@ -55,17 +68,32 @@ public class PacMan : Character
         }
 
 
-        if(canKill){
-        
-            GameObject.Find("PacmanBody").GetComponent<MeshRenderer>().material.color = Random.ColorHSV();
+        if (canKill)
+        {
+
+            if (Time.time > changeTime)
+            {
+                GameObject.Find("PacmanBody").GetComponent<MeshRenderer>().material.color = Random.ColorHSV();
+                GameObject.Find("Directional Light").GetComponent<Light>().color = Random.ColorHSV();
+                GameObject.Find("Directional Light").GetComponent<Light>().intensity = 50f;
+                GameObject.Find("MusicPlayer").GetComponent<AudioSource>().pitch = 1.5f;
+                changeTime = Time.time + 0.2f;
+            }
+
             killTimer -= Time.deltaTime;
-            if(killTimer <= 0f){
+            if (killTimer <= 0f)
+            {
                 canKill = false;
             }
 
-        }else{       
+        }
+        else
+        {
             GameObject.Find("PacmanBody").GetComponent<MeshRenderer>().material = defMat;
-            killTimer = 10f;            
+            GameObject.Find("Directional Light").GetComponent<Light>().color = Color.white;
+            GameObject.Find("Directional Light").GetComponent<Light>().intensity = 2f;
+            GameObject.Find("MusicPlayer").GetComponent<AudioSource>().pitch = 1f;
+            killTimer = 10f;
         }
     }
 
@@ -89,6 +117,13 @@ public class PacMan : Character
 
         if(collision.gameObject.tag == "Point"){
 
+            if(audioPacman[0].isPlaying)
+            {
+                audioPacman[0].Stop();
+            }
+
+            audioPacman[0].Play();
+
             GameManager gm = GameObject.Find("GameManager").GetComponent<GameManager>();
 
             PointManager pm = GameObject.Find(collision.gameObject.name).GetComponent<PointManager>();
@@ -104,6 +139,13 @@ public class PacMan : Character
         }
 
         if(collision.gameObject.tag == "BigPoint"){
+
+            if (audioPacman[0].isPlaying)
+            {
+                audioPacman[0].Stop();
+            }
+
+            audioPacman[0].Play();
 
             PointManager pm = GameObject.Find(collision.gameObject.name).GetComponent<PointManager>();
 
@@ -153,6 +195,9 @@ public class PacMan : Character
 
     [PunRPC]
     void PacmanDied(){
+
+        pacmanLifes[(int)lifes - 1].SetActive(false);
+        audioPacman[1].Play();
 
         GetComponent<CharacterController>().enabled = false;
 

@@ -19,6 +19,16 @@ public class Ghost : Character
     {
         base.Update();
 
+        if (Time.timeSinceLevelLoad <= 5f)
+        {
+            GetComponent<CharacterController>().enabled = false;
+
+        }
+        else if (Time.timeSinceLevelLoad >= 5f && Time.timeSinceLevelLoad <= 6f)
+        {
+            GetComponent<CharacterController>().enabled = true;
+        }
+
     }
 
     
