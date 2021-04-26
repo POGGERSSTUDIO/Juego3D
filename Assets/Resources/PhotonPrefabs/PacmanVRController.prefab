@@ -167,7 +167,7 @@ MonoBehaviour:
   cam: {fileID: 0}
   portalPos: []
   minimap: {fileID: 0}
-  defMat: {fileID: 0}
+  defMat: {fileID: 2100000, guid: b623384a2bad3d547b9743da9df00ef2, type: 2}
 --- !u!114 &7774081179863500747
 MonoBehaviour:
   m_ObjectHideFlags: 0
