@@ -37,8 +37,10 @@ public class PacMan : Character
         if(Time.timeSinceLevelLoad <= 2f){
 
             balls = GameObject.FindGameObjectsWithTag("Point").Length;
-            portalPos[0] = GameObject.Find("TP1").transform;
-            portalPos[1] = GameObject.Find("TP2").transform;
+            if(GetComponent<PhotonView>().IsMine){
+                portalPos[0] = GameObject.Find("TP1").transform;
+                portalPos[1] = GameObject.Find("TP2").transform;
+            }
             ghost = GameObject.FindGameObjectsWithTag("Ghost");
             
             if(GameObject.Find("Panel") != null){
@@ -113,6 +115,20 @@ public class PacMan : Character
             gm.increaseScore(scoreBalls);
 
             canKill = true;
+
+        }
+
+        if (collision.gameObject.tag == "Ghost")
+        {
+            if(canKill){
+                
+                collision.gameObject.transform.position = new Vector3(0f, 0f, 0f);
+
+            }else{
+
+                photonView.RPC("PacmanDied", RpcTarget.All);
+
+            }
 
         }
 

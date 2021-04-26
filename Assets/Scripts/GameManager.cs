@@ -45,16 +45,24 @@ public class GameManager : MonoBehaviourPunCallbacks
         if(Time.timeSinceLevelLoad <= 2f){
         
             if(SceneManager.GetActiveScene().buildIndex == 2){
-
-                score = GameObject.Find("Score").GetComponent<Text>();
                 
-                PV = GameObject.Find("Canvas").GetComponent<PhotonView>();
+                if(GameObject.Find("Score") != null){
+                    score = GameObject.Find("Score").GetComponent<Text>();
+                }
 
-                GameObject.FindObjectOfType<OVRCameraRig>().gameObject.SetActive(false);
+                if(GameObject.Find("Canvas") != null){
+                    PV = GameObject.Find("Canvas").GetComponent<PhotonView>();
+                }
+
+                if(GameObject.FindObjectOfType<OVRCameraRig>() != null){
+                    GameObject.FindObjectOfType<OVRCameraRig>().gameObject.SetActive(false);
+                }
 
                 if (!PV.IsMine){
-
-                    GameObject.Find("UIPacman").SetActive(false);
+                    
+                    if(GameObject.Find("UIPacman") != null){
+                        GameObject.Find("UIPacman").SetActive(false);
+                    }
 
                 }else{
 
@@ -71,12 +79,23 @@ public class GameManager : MonoBehaviourPunCallbacks
                 EndGame(victory);
             }
 
+            if(Time.timeSinceLevelLoad > 10f && GameObject.FindObjectOfType<PacMan>() == null){
+
+                PhotonNetwork.LeaveRoom();
+                Destroy(RoomManager.Instance.gameObject);
+                SceneManager.LoadScene(1);
+
+            }
+
         }
     }
 
     public void increaseScore(int objScore){
         gameScore += objScore;
-        score.text = "Score: " + gameScore.ToString();
+        if(score != null){
+            score.text = "Score: " + gameScore.ToString();
+        }
+        
     }
 
     public void EndGame(bool vPacman){
