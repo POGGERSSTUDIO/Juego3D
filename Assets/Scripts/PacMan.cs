@@ -21,7 +21,6 @@ public class PacMan : Character
     Text counter;
     public GameObject[] pacmanLifes;
     public AudioSource[] audioPacman;
-    float deathTime;
 
     public override void Start(){
         base.Start();
@@ -36,7 +35,6 @@ public class PacMan : Character
         killTimer = 10f;
         changeTime = 0f;
         startTimer = 5f;
-        deathTime = 0f;
         counter = GameObject.Find("CountDown").GetComponent<Text>();
         
     }  
@@ -139,12 +137,6 @@ public class PacMan : Character
 
         if(collision.gameObject.tag == "Point"){
 
-            if(audioPacman[0].isPlaying){
-                audioPacman[0].Stop();
-            }
-
-            audioPacman[0].Play();
-
             GameManager gm = GameObject.Find("GameManager").GetComponent<GameManager>();
 
             PointManager pm = GameObject.Find(collision.gameObject.name).GetComponent<PointManager>();
@@ -157,15 +149,18 @@ public class PacMan : Character
 
             score++;
 
+            if(GetComponent<PhotonView>().IsMine){
+
+                if(audioPacman[0].isPlaying){
+                    audioPacman[0].Stop();
+                }
+
+                audioPacman[0].Play();
+            }
+
         }
 
         if(collision.gameObject.tag == "BigPoint"){
-
-            if(audioPacman[0].isPlaying){
-                audioPacman[0].Stop();
-            }
-
-            audioPacman[0].Play();
 
             PointManager pm = GameObject.Find(collision.gameObject.name).GetComponent<PointManager>();
 
@@ -176,6 +171,15 @@ public class PacMan : Character
             gm.increaseScore(scoreBalls);
 
             canKill = true;
+
+            if(GetComponent<PhotonView>().IsMine){
+
+                if(audioPacman[0].isPlaying){
+                    audioPacman[0].Stop();
+                }
+
+                audioPacman[0].Play();
+            }
 
         }
 
@@ -215,12 +219,10 @@ public class PacMan : Character
 
     [PunRPC]
     void PacmanDied(){
-
-        audioPacman[1].Play();
-
-        deathTime = Time.time + 1f;
-
-        pacmanLifes[(int) lifes - 1].SetActive(false);
+        
+        if(pacmanLifes != null){
+            pacmanLifes[(int) lifes - 1].SetActive(false);
+        }
 
         lifes--;
 
@@ -231,6 +233,8 @@ public class PacMan : Character
         }
 
         transform.position = new Vector3(0f, 0f, -20f);
+
+        audioPacman[1].Play();
 
     }
 
