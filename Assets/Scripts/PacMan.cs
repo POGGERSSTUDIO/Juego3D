@@ -111,16 +111,15 @@ public class PacMan : Character
 
         if(collision.gameObject.layer == 11){
 
-
             if(collision.gameObject.name == "Plane"){
-                GetComponent<CharacterController>().enabled = false;
-                transform.localPosition = portalPos[0].transform.position;
-                GetComponent<CharacterController>().enabled = true;
+//                GetComponent<CharacterController>().enabled = false;
+                transform.position = new Vector3(-22, 0.1f, -3.2f);
+  //              GetComponent<CharacterController>().enabled = true;
             }
             else{
-                GetComponent<CharacterController>().enabled = false;
-                transform.localPosition = portalPos[1].transform.position;
-                GetComponent<CharacterController>().enabled = true;
+    //            GetComponent<CharacterController>().enabled = false;
+                transform.position = new Vector3(22f, 0.1f, -3.2f);
+      //          GetComponent<CharacterController>().enabled = true;
             }
 
         }
@@ -205,8 +204,10 @@ public class PacMan : Character
 
     [PunRPC]
     void PacmanDied(){
-
-        pacmanLifes[(int)lifes - 1].SetActive(false);
+        
+        if(pacmanLifes != null){
+            pacmanLifes[(int)lifes - 1].SetActive(false);
+        }
         audioPacman[1].Play();
 
         GetComponent<CharacterController>().enabled = false;
