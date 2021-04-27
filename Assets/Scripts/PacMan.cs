@@ -74,14 +74,21 @@ public class PacMan : Character
             gm.setVictory(false);
         }
 
-        if(startTimer >= 0 && counter != null){
-            
-            counter.text = "Game starts in: " + (int) startTimer;
+        if (startTimer >= 0 && counter != null)
+        {
+
+            counter.text = "Game starts in: " + (int)startTimer;
             startTimer -= Time.deltaTime;
 
-        }else{
-            if(counter != null){
-                counter.gameObject.GetComponentInParent<Image>().gameObject.SetActive(false);
+        }
+        else if (Time.timeSinceLevelLoad > 5f && Time.timeSinceLevelLoad < 6f)
+        {
+            if (counter != null)
+            {
+                if (counter.gameObject.GetComponentInParent<Image>().gameObject != null)
+                {
+                    counter.gameObject.GetComponentInParent<Image>().gameObject.SetActive(false);
+                }
             }
         }
 
