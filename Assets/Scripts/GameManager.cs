@@ -34,14 +34,6 @@ public class GameManager : MonoBehaviourPunCallbacks
             }
         }
 
-        if (SceneManager.GetActiveScene().buildIndex == 1)
-        {
-            if (Time.timeSinceLevelLoad >= vp.length)
-            {
-                SceneManager.LoadScene(2);
-            }
-        }
-
         if(Time.timeSinceLevelLoad <= 2f){
         
             if(SceneManager.GetActiveScene().buildIndex == 2){
@@ -134,5 +126,9 @@ public class GameManager : MonoBehaviourPunCallbacks
     public void setVictory(bool v){
         gameEnded = true;
         victory = v;
+    }
+
+    public void Quit(){
+        Application.Quit();
     }
 }

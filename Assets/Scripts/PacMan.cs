@@ -122,13 +122,13 @@ public class PacMan : Character
             if(collision.gameObject.name == "Plane"){
                 
                 GetComponent<CapsuleCollider>().enabled = false;
-                transform.localPosition = portalPos[1].position;
+                transform.position = portalPos[1].position;
                 GetComponent<CapsuleCollider>().enabled = true;
                 
             }else{
 
                 GetComponent<CapsuleCollider>().enabled = false;
-                transform.localPosition = portalPos[0].position;
+                transform.position = portalPos[0].position;
                 GetComponent<CapsuleCollider>().enabled = true;
 
             }
