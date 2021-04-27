@@ -37,12 +37,20 @@ public class PacMan : Character
     {
         if (Time.timeSinceLevelLoad <= 5f)
         {
-            GetComponent<CharacterController>().enabled = false;
+            if (GetComponent<CharacterController>() != null)
+            {
+                GetComponent<CharacterController>().enabled = false;
+            }
+                
 
         }
         else if (Time.timeSinceLevelLoad >= 5f && Time.timeSinceLevelLoad <= 6f) 
         {
+            //if(GetComponent<CharacterController>() == null)
+           
             GetComponent<CharacterController>().enabled = true;
+           
+            
         }
 
         base.Update();
@@ -95,6 +103,8 @@ public class PacMan : Character
             GameObject.Find("MusicPlayer").GetComponent<AudioSource>().pitch = 1f;
             killTimer = 10f;
         }
+
+
     }
 
     void OnTriggerEnter(Collider collision){
@@ -117,13 +127,6 @@ public class PacMan : Character
 
         if(collision.gameObject.tag == "Point"){
 
-            if(audioPacman[0].isPlaying)
-            {
-                audioPacman[0].Stop();
-            }
-
-            audioPacman[0].Play();
-
             GameManager gm = GameObject.Find("GameManager").GetComponent<GameManager>();
 
             PointManager pm = GameObject.Find(collision.gameObject.name).GetComponent<PointManager>();
@@ -136,16 +139,16 @@ public class PacMan : Character
 
             score++;
 
-        }
-
-        if(collision.gameObject.tag == "BigPoint"){
-
             if (audioPacman[0].isPlaying)
             {
                 audioPacman[0].Stop();
             }
 
             audioPacman[0].Play();
+
+        }
+
+        if(collision.gameObject.tag == "BigPoint"){
 
             PointManager pm = GameObject.Find(collision.gameObject.name).GetComponent<PointManager>();
 
@@ -156,6 +159,13 @@ public class PacMan : Character
             gm.increaseScore(scoreBalls);
 
             canKill = true;
+
+            if (audioPacman[0].isPlaying)
+            {
+                audioPacman[0].Stop();
+            }
+
+            audioPacman[0].Play();
 
         }
 

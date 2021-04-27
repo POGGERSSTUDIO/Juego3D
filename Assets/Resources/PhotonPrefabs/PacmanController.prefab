@@ -133,6 +133,8 @@ MonoBehaviour:
   - {fileID: 0}
   minimap: {fileID: 0}
   defMat: {fileID: 2100000, guid: b623384a2bad3d547b9743da9df00ef2, type: 2}
+  audioPacman: []
+  pacmanLifes: []
 --- !u!136 &578385045832256172
 CapsuleCollider:
   m_ObjectHideFlags: 0
